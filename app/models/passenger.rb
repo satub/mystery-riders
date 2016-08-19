@@ -6,7 +6,7 @@ class Passenger < ActiveRecord::Base
   validates_presence_of :email, on: :create
 
   validates_uniqueness_of :alias, :email
-  
+
   validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
 
   validates_length_of :alias, within: 4..20, too_long: 'alias maximum length is 20 characters', too_short: 'alias minimum length is 4 characters'
