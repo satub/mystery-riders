@@ -18,12 +18,21 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/subwaylines/lines' do
+    @lines = SubwayLine.all
     erb :'/subwaylines/lines'
   end
 
   get '/subwaylines/show/:id' do
     @line = SubwayLine.find(params[:id])
     erb :"/subwaylines/show/#{params[:id]}"
+  end
+
+  get '/passengers/login' do
+    erb :'passengers/login'
+  end
+
+  get '/passengers/signup' do
+    erb :'/passengers/signup'
   end
 
   helpers do
