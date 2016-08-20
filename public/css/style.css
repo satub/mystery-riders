@@ -23,8 +23,8 @@ a {
 
 #quicklinks {
   position: fixed;
-  bottom: 100px;
-  left: 20px;
+  top: 100px;
+  right: 120px;
   width: 100px;
   z-index: 1;
 }

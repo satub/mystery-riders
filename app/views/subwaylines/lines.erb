@@ -1,0 +1,10 @@
+<h2>NYC Lines Currently in Operation:</h2>
+
+<p>
+  <%@lines.each do |line|%>
+
+    <%path = "../../images/lines/"%>
+    <a href = "/subwaylines/<%=line.line%>"><img src="<%=path%><%=line.filename%>" width = 30px></a>
+
+  <%end%>
+</p>
