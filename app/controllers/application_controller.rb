@@ -23,8 +23,14 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/subwaylines/:id' do
-    @line = SubwayLine.find(params[:id])
-    erb :'/subwaylines/show'
+    allowed_keys = SubwayLine.all.collect {|line| line.line}
+    if !allowed_keys.include?(params[:id])
+      flash[:message] = "There is no #{params[:id]} line currently in operation!"
+      erb :error
+    else
+      @line = SubwayLine.find_by(:line => params[:id])
+      erb :'/subwaylines/show'
+    end
   end
 
   get '/passengers/login' do

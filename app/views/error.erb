@@ -1,0 +1,4 @@
+<h3>Seems like something went wrong!</h3>
+<% if flash.has?(:message) %>
+  <p>Error: <%= flash[:message] %></p>
+<% end %>
