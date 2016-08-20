@@ -2,18 +2,29 @@ body {
   background: rgba(30, 30, 30, 0.9);
 }
 
+h1 {
+  font-size: 3em;
+}
+
 h1,h2,h3,h4,h5 {
   color: #EE352E;
-  font-size: 3em;
   font-style: oblique;
 }
 
 p {
-  color: gold;
+  color: #FF6319;
   font-weight: normal;
 }
 
 a {
   color: white;
   font-style: italic;
+}
+
+#quicklinks {
+  position: fixed;
+  bottom: 100px;
+  left: 20px;
+  width: 100px;
+  z-index: 1;
 }

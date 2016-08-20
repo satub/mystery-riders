@@ -13,7 +13,9 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/' do
+    @lines = SubwayLine.all
     erb :index
   end
+
 
 end
