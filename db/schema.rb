@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160820173206) do
+ActiveRecord::Schema.define(version: 20160820195339) do
 
   create_table "passengers", force: :cascade do |t|
     t.string "alias"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20160820173206) do
 
   create_table "subway_lines", force: :cascade do |t|
     t.string "line"
+    t.string "filename"
   end
 
 end
