@@ -38,4 +38,8 @@ class FeedbackController < ApplicationController
    end
  end
 
+  get '/feedback/:id/edit' do
+    binding.pry
+  end
+
 end

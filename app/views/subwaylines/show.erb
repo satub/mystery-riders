@@ -5,7 +5,8 @@
 <%if @line.ride_feedbacks.present?%>
   <h3>Average rating for this line: <%=%>  (based on <%=%> comments)</h3>
   <%@line.ride_feedbacks.each do |feedback|%>
-    <p><%=feedback.content%>   Ride Rating: <%=feedback.rating%></p>
+    <p><%=feedback.content%>   Ride Rating: <%=feedback.rating%>
+      <a href="/feedback/<%=feedback.id%>/edit"> Edit</a></p>
   <%end%>
   <%else%>
   <p>No comments yet.</p>
