@@ -33,12 +33,49 @@ class ApplicationController < Sinatra::Base
     end
   end
 
-  get '/passengers/login' do
-    erb :'passengers/login'
+  get '/signup' do
+    if logged_in?
+      flash[:message] = "You are already logged in!"
+      redirect '/subwaylines'
+    else
+      erb :'/passengers/signup'
+    end
   end
 
-  get '/passengers/signup' do
-    erb :'/passengers/signup'
+  post '/signup' do
+    # binding.pry
+    new_passenger = Passenger.create(params)
+    if new_passenger.errors.present?
+      err = new_passenger.errors.messages
+      message = ""
+      new_passenger.errors.messages.keys.each_with_object(message) do |cause, message|
+          message << cause.to_s.capitalize + ": "
+          message << err[cause].collect {|issue| issue}.join(", ")
+          message << "<br>"
+      end
+      flash[:message] = message
+      erb :'/passengers/signup'
+    else
+      redirect '/subwaylines'
+    end
+  end
+
+  get '/login' do
+    if logged_in?
+      flash[:message] = "You are already logged in!"
+      redirect '/subwaylines'
+    else
+      erb :'passengers/login'
+    end
+  end
+
+  post '/login' do
+
+  end
+
+
+  get '/logout' do
+    session.clear
   end
 
   helpers do
