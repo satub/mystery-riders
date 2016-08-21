@@ -43,7 +43,6 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/signup' do
-    # binding.pry
     new_passenger = Passenger.create(params)
     if new_passenger.errors.present?
       err = new_passenger.errors.messages
@@ -70,7 +69,14 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/login' do
-
+    passenger = Passenger.find_by(:alias => params[:alias])
+    if passenger && passenger.authenticate(params[:password])
+      session[:id] = passenger.id
+      redirect '/subwaylines'
+    else
+      flash[:message] = "Unknown user or wrong password."
+      redirect "/login"
+    end
   end
 
 
