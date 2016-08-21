@@ -7,5 +7,5 @@ end
 
 use Rack::MethodOverride
 
-# use FeedbackController
+use FeedbackController
 run ApplicationController
