@@ -1,0 +1,17 @@
+<% if flash.has?(:message) %>
+  <p><%=flash[:message]%></p>
+<% end %>
+<%path = "../../images/lines/"%>
+<h2><img src="<%=path%><%=@feedback.subway_line.filename%>" width = 30px> Write Feedback for the <%=@feedback.subway_line.line%> line:</h2>
+<form method = "POST" action = "/feedback/<%=@feedback.id%>/edit">
+  <input id = "hidden" type = "hidden" name="_method" value = "PATCH">
+<input type = "hidden" name = "line[line]" value = "<%=@feedback.subway_line.line%>">
+<p>Rate your Ride:
+  <%i = 1%>
+  <%5.times do%>
+  <input type = "radio" name = "feedback[rating]" value = "<%=i%>" <%='checked' if @feedback.rating == i %>> <%=i%>
+  <%i += 1%>
+<%end%></p>
+<p>Feedback: <input type = "text" name = "feedback[content]" value = "<%=@feedback.content%>"></p>
+<input type = "submit" value = "Submit">
+</form>

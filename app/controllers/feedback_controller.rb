@@ -39,6 +39,19 @@ class FeedbackController < ApplicationController
  end
 
   get '/feedback/:id/edit' do
+    if !logged_in?
+      flash[:message] = "You need to login to edit your comments."
+      redirect '/login'
+    elsif current_passenger.id != session[:id]
+      flash[:message] = "You can only edit your own comments."
+      redirect '/subwaylines'
+    else
+      @feedback = RideFeedback.find(params[:id])
+      erb :'/feedback/edit'
+    end
+  end
+
+  patch '/feedback/:id/edit' do
     binding.pry
   end
 
