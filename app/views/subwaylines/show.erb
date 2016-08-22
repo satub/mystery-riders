@@ -4,7 +4,7 @@
 
 
 <%if @line.ride_feedbacks.present?%>
-  <h3>Average rating for this line: <%=%>  (based on <%=%> comments)</h3>
+  <h3>Average rating for this line: <%=@line.ride_feedbacks.average(:rating).to_f%>  (based on <%=@line.ride_feedbacks.count%> comments)</h3>
   <%@line.ride_feedbacks.each do |feedback|%>
     <p><%=feedback.content%>   Ride Rating: <%=feedback.rating%>  By: <%=feedback.passenger.alias%>
       <form method = "GET" action = "/feedback/<%=feedback.id%>/edit">
