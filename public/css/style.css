@@ -4,7 +4,7 @@ body {
 
 h1 {
   font-size: 3em;
-  text-align: justify;
+  text-align: center;
 }
 
 h1,h2,h3,h4,h5 {
@@ -28,33 +28,4 @@ a {
   right: 120px;
   width: 100px;
   z-index: 1;
-}
-
-.logos, .titlelines {
-  display: block;
-  width: 75%;
-}
-.logos img{
-  display: block;
-  float: left;
-  width: 7.5%;
-}
-.titlelines img.first{
-  display: block;
-  float: left;
-  width: 7.5%;
-}
-.titlelines img.last{
-  display: block;
-  float: left;
-  width: 7.5%;
-}
-.center{
-  display: block;
-  text-align: center;
-  float: left;
-  width: 60%;
-}
-.clear {
-   clear:both;
 }

@@ -8,30 +8,7 @@
   <body>
     <%path_to_images = "../../images/lines/"%>
     <%l = SubwayLine.all%>
-    <%division = (l.size - 2)/2%>
-    <div class = "logos">
-      <h1>
-        <% i = 1 %>
-        <% division.times do%>
-          <img src="<%=path_to_images%><%=l[i].logo%>" width = 40px>
-          <% i += 1 %>
-          <%end%>
-        </h1>
-    </div>
-    <div class = "clear"></div>
-    <div class = "titlelines">
-      <h1><img class = "first" src="<%=path_to_images%><%=l.first.logo%>" width = 40px><div class = "center"> Mystery Riders</div> <img class = "last" src="<%=path_to_images%><%=l.last.logo%>" width = 40px></h1>
-    </div>
-    <div class = "clear"></div>
-    <div class = "logos">
-      <h1>
-        <% division.times do%>
-        <img src="<%=path_to_images%><%=l[i].logo%>" width = 40px>
-        <% i += 1%>
-        <%end%>
-      </h1>
-    </div>
-    <div class = "clear"></div>
+    <h1><img src="<%=path_to_images%><%=l[rand(0...l.size)].logo%>" width = 40px> Mystery Riders <img src="<%=path_to_images%><%=l[rand(0...l.size)].logo%>" width = 40px></h1>
 
     <% if flash.has?(:message) %>
       <p><%=flash[:message]%></p>
