@@ -39,10 +39,11 @@ class FeedbackController < ApplicationController
  end
 
   get '/feedback/:id/edit' do
+    fb = RideFeedback.find(params[:id])
     if !logged_in?
       flash[:message] = "You need to login to edit your comments."
       redirect '/login'
-    elsif current_passenger.id != session[:id]
+    elsif  fb.passenger_id != session[:id].to_i
       flash[:message] = "You can only edit your own comments."
       redirect '/subwaylines'
     else
@@ -52,10 +53,11 @@ class FeedbackController < ApplicationController
   end
 
   patch '/feedback/:id/edit' do
+    fb = RideFeedback.find(params[:id])
     if !logged_in?
       flash[:message] = "You need to login to edit your comments."
       redirect '/login'
-    elsif current_passenger.id != session[:id]
+    elsif fb.passenger_id != session[:id].to_i
       flash[:message] = "You can only edit your own comments."
       redirect '/subwaylines'
     else
@@ -71,10 +73,11 @@ class FeedbackController < ApplicationController
   end
 
   delete '/feedback/:id/delete' do
+    fb = RideFeedback.find(params[:id])
     if !logged_in?
       flash[:message] = "You need to login to delete your comments."
       redirect '/login'
-    elsif current_passenger.id != session[:id]
+    elsif fb.passenger_id != session[:id].to_i
       flash[:message] = "You can only delete your own comments."
       redirect '/subwaylines'
     else
