@@ -1,12 +1,17 @@
+
 <%path = "../../images/lines/"%>
-<h2><img src="<%=path%><%=@line.filename%>" width = 30px> Hello from the <%=@line.line%> line!</h2>
+<h2><img src="<%=path%><%=@line.logo%>" width = 30px> Hello from the <%=@line.line%> line!</h2>
 
 
 <%if @line.ride_feedbacks.present?%>
   <h3>Average rating for this line: <%=%>  (based on <%=%> comments)</h3>
   <%@line.ride_feedbacks.each do |feedback|%>
-    <p><%=feedback.content%>   Ride Rating: <%=feedback.rating%>
-      <a href="/feedback/<%=feedback.id%>/edit"> Edit</a></p>
+    <p><%=feedback.content%>   Ride Rating: <%=feedback.rating%>  By: <%=feedback.passenger.alias%>
+      <form method = "GET" action = "/feedback/<%=feedback.id%>/edit">
+        <input type = "submit" value = "Edit"> </form>
+      <form method = "POST" action = "/feedback/<%=feedback.id%>/delete">
+        <input id = "hidden" type = "hidden" name="_method" value = "DELETE">
+        <input type = "submit" value = "Delete"></form></p>
   <%end%>
   <%else%>
   <p>No comments yet.</p>

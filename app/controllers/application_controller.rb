@@ -54,6 +54,7 @@ class ApplicationController < Sinatra::Base
       flash[:message] = message
       erb :'/passengers/signup'
     else
+      session[:id] = new_passenger.id
       redirect '/subwaylines'
     end
   end
@@ -81,6 +82,8 @@ class ApplicationController < Sinatra::Base
 
   get '/logout' do
     session.clear
+    flash[:message] = "Successfully logged out."
+    redirect "/login"
   end
 
   helpers do

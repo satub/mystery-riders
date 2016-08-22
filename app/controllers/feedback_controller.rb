@@ -70,4 +70,18 @@ class FeedbackController < ApplicationController
     end
   end
 
+  delete '/feedback/:id/delete' do
+    if !logged_in?
+      flash[:message] = "You need to login to delete your comments."
+      redirect '/login'
+    elsif current_passenger.id != session[:id]
+      flash[:message] = "You can only delete your own comments."
+      redirect '/subwaylines'
+    else
+      fb = RideFeedback.destroy(params[:id])
+      flash[:message] = "Successfully deleted feedback!"
+      redirect "/subwaylines"
+    end
+  end
+
 end

@@ -2,7 +2,7 @@
   <p><%=flash[:message]%></p>
 <% end %>
 <%path = "../../images/lines/"%>
-<h2><img src="<%=path%><%=@line.filename%>" width = 30px> Write Feedback for the <%=@line.line%> line:</h2>
+<h2><img src="<%=path%><%=@line.logo%>" width = 30px> Write Feedback for the <%=@line.line%> line:</h2>
 <form method = "POST" action = "/feedback">
 <input type = "hidden" name = "line[line]" value = "<%=@line.line%>">
 <p>Rate your Ride:
