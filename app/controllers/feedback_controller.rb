@@ -52,7 +52,22 @@ class FeedbackController < ApplicationController
   end
 
   patch '/feedback/:id/edit' do
-    binding.pry
+    if !logged_in?
+      flash[:message] = "You need to login to edit your comments."
+      redirect '/login'
+    elsif current_passenger.id != session[:id]
+      flash[:message] = "You can only edit your own comments."
+      redirect '/subwaylines'
+    else
+      fb = RideFeedback.update(params[:id], :content => params[:feedback][:content], :rating => params[:feedback][:rating].to_i)
+      if fb.errors.present?
+        flash[:message] = fb.errors.messages.values.join(" ")
+        redirect "/feedback/#{params[:id]}/edit"
+      else
+        flash[:message] = "Successfully edited feedback!"
+        redirect "/subwaylines/#{params[:line][:line]}"
+      end
+    end
   end
 
 end
