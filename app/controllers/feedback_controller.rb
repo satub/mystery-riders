@@ -4,6 +4,12 @@ class FeedbackController < ApplicationController
 
   use Rack::Flash
 
+  get '/feedback' do
+    @passenger = Passenger.find(session[:id])
+    @feedbacks = RideFeedback.order(:subway_line_id).where(:passenger_id => @passenger.id)
+    erb :'/feedback/index'
+  end
+
   get '/feedback/:id/new' do
     if logged_in?
       allowed_keys = SubwayLine.all.collect {|line| line.line}
