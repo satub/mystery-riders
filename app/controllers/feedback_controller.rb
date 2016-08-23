@@ -39,7 +39,7 @@ class FeedbackController < ApplicationController
        redirect "/subwaylines/#{params[:line][:line]}"
      else
        flash[:message] = fb.errors.messages.values.join(" ")
-       redirect "/feedback/#{params[:line][:line]}/new"
+       redirect "/subwaylines/#{params[:line][:line]}"
      end
    end
  end
