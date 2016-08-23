@@ -17,4 +17,8 @@
   <p>No comments yet.</p>
 <%end%>
 
-<p><a href = "/feedback/<%=@line.line%>/new">Write feedback</a></p>
+
+<p><form method="GET" action = "/feedback/new">
+  <input type = "hidden" name = "line[line]" value = "<%=@line.line%>">
+  <input type = "submit" value = "Write Feedback">
+</form></p>

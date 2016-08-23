@@ -10,19 +10,19 @@ class FeedbackController < ApplicationController
     erb :'/feedback/index'
   end
 
-  get '/feedback/:id/new' do
-    if logged_in?
-      allowed_keys = SubwayLine.all.collect {|line| line.line}
-      if !allowed_keys.include?(params[:id])
-        flash[:message] = "There is no #{params[:id]} line currently in operation!"
-        erb :error
-      else
-        @line = SubwayLine.find_by(:line => params[:id])
-        erb :'/feedback/new'
-      end
+  get '/feedback/new' do
+    allowed_keys = SubwayLine.all.collect {|line| line.line}
+    if !allowed_keys.include?(params[:line][:line])
+      flash[:message] = "There is no #{params[:line][:line]} line currently in operation!"
+      erb :error
     else
-      flash[:message] = "You need to login to post feedback."
-      redirect '/login'
+      if logged_in?
+        @line = SubwayLine.find_by(:line => params[:line][:line])
+        erb :'/feedback/new'
+      else
+        flash[:message] = "You need to login to post feedback."
+        redirect '/login'
+      end
     end
   end
 
