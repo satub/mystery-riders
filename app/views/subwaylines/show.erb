@@ -7,11 +7,17 @@
   <h3>Average rating for this line: <%=@line.ride_feedbacks.average(:rating).to_f%>  (based on <%=@line.ride_feedbacks.count%> comments)</h3>
   <%@line.ride_feedbacks.each do |feedback|%>
     <p><%=feedback.content%>   Ride Rating: <%=feedback.rating%>  By: <%=feedback.passenger.alias%>
+      <div class="formbuttons">
       <form method = "GET" action = "/feedback/<%=feedback.id%>/edit">
         <input type = "submit" value = "Edit"> </form>
+      </div>
+      <div class="formbuttons">
       <form method = "POST" action = "/feedback/<%=feedback.id%>/delete">
         <input id = "hidden" type = "hidden" name="_method" value = "DELETE">
-        <input type = "submit" value = "Delete"></form></p>
+        <input type = "submit" value = "Delete"></form>
+      </div>
+      <div class="clear"></div>
+      </p>
   <%end%>
   <%else%>
   <p>No comments yet.</p>

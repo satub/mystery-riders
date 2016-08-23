@@ -24,8 +24,17 @@ a {
 
 #quicklinks {
   position: fixed;
-  top: 100px;
-  right: 120px;
-  width: 100px;
+  top: 75px;
+  right: 75px;
+  width: 150px;
   z-index: 1;
+}
+
+.formbuttons {
+  display: inlay;
+  float: left;
+}
+.clear {
+  display: block;
+  clear: both;
 }

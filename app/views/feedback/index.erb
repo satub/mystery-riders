@@ -1,16 +1,21 @@
-<h2>This is an index of your feedback for all the lines, <%=@passenger.alias%>.</h2>
+<h2>This is an index of your feedback for all the lines, <%=@passenger.alias.capitalize%>.</h2>
 
 <%if !@passenger.ride_feedbacks.present?%>
 
   <p>You haven't written any feedback yet.</p>
 <%else%>
   <%@feedbacks.each do |feedback|%>
-    <p>On the <%=feedback.subway_line.line%> line: <%=feedback.content%>; rating: <%=feedback.rating%>.
+    <p><a href = "/subwaylines/<%=feedback.subway_line.line%>">On the <%=feedback.subway_line.line%> line:</a> <%=feedback.content%>; rating: <%=feedback.rating%>.
+      <div class="formbuttons">
       <form method = "GET" action = "/feedback/<%=feedback.id%>/edit">
         <input type = "submit" value = "Edit"> </form>
+      </div>
+      <div class="formbuttons">
       <form method = "POST" action = "/feedback/<%=feedback.id%>/delete">
         <input id = "hidden" type = "hidden" name="_method" value = "DELETE">
         <input type = "submit" value = "Delete"></form>
+        </div>
+        <div class="clear"></div>
     </p>
   <%end%>
 <%end%>
